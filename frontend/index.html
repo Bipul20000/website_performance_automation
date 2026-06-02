@@ -7,7 +7,10 @@
     <meta name="description" content="MotoVerse — India's leading two-wheeler company. Explore motorcycles, scooters, and electric vehicles." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Preload the most critical font weight (Inter 900) for LCP, using the Latin subset URL -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMdVGZsGIKzX7.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Load only necessary font weights (400, 500, 700, 900) to reduce payload -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <title>MotoVerse — Born to Lead</title>
   </head>
   <body class="bg-white text-dark">
