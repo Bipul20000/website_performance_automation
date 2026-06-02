@@ -40,6 +40,13 @@ export default function HeroBanner() {
   }, []);
 
   useEffect(() => {
+    // Hide the static placeholder once the React HeroBanner component has mounted.
+    // This ensures the static content is measured for LCP, then replaced by the interactive component.
+    const staticHero = document.getElementById('static-hero-placeholder');
+    if (staticHero) {
+      staticHero.style.display = 'none';
+    }
+
     startAutoAdvance();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
