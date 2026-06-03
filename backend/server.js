@@ -56,7 +56,12 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB (non-blocking — server starts even if DB is unavailable)
-connectDB();
+connectDB().catch(err => {
+  console.error('MongoDB connection failed:', err.message);
+  // The server is designed to start even if DB is unavailable,
+  // so we just log the error and let the application continue.
+  // Routes dependent on DB will likely fail and be handled by errorHandler.
+});
 
 if (require.main === module) {
   app.listen(PORT, () => {
