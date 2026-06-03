@@ -45,7 +45,9 @@ export default function HeroBanner() {
     // and to allow the React component to fully render its first slide.
     const hideTimeout = setTimeout(() => {
       if (staticHero) {
-        staticHero.style.display = 'none';
+        // Change to opacity and pointer-events to prevent layout shift
+        staticHero.style.opacity = '0';
+        staticHero.style.pointerEvents = 'none';
       }
     }, 500); // Delay for 500ms
 
