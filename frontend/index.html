@@ -10,7 +10,9 @@
     <!-- Preload the most critical font weight (Inter 900) for LCP, using the Latin subset URL -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMdVGZsGIKzX7.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Load only necessary font weights (400, 500, 700, 900) to reduce payload -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Fix: Load Google Fonts stylesheet asynchronously to prevent render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"></noscript>
     <title>MotoVerse — Born to Lead</title>
   </head>
   <body class="bg-white text-dark">
