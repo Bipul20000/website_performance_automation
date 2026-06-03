@@ -33,7 +33,7 @@
     <!-- Static placeholder for HeroBanner's first slide to improve FCP/LCP -->
     <!-- This content will be visible immediately and serve as the LCP element. -->
     <!-- It will be hidden by the React HeroBanner component once it mounts. -->
-    <section id="static-hero-placeholder" class="relative h-screen w-full overflow-hidden">
+    <section id="static-hero-placeholder" class="fixed top-0 left-0 w-full h-screen overflow-hidden z-50 transition-opacity duration-500 ease-out">
       <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark via-dark-light to-dark">
         <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
