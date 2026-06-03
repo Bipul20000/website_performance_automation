@@ -40,16 +40,19 @@ export default function HeroBanner() {
   }, []);
 
   useEffect(() => {
-    // Hide the static placeholder once the React HeroBanner component has mounted.
-    // This ensures the static content is measured for LCP, then replaced by the interactive component.
     const staticHero = document.getElementById('static-hero-placeholder');
-    if (staticHero) {
-      staticHero.style.display = 'none';
-    }
+    // Delay hiding the static placeholder to ensure it's measured as LCP
+    // and to allow the React component to fully render its first slide.
+    const hideTimeout = setTimeout(() => {
+      if (staticHero) {
+        staticHero.style.display = 'none';
+      }
+    }, 500); // Delay for 500ms
 
     startAutoAdvance();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
+      clearTimeout(hideTimeout); // Clear timeout on unmount
     };
   }, [startAutoAdvance]);
 
