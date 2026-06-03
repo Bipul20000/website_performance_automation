@@ -13,6 +13,8 @@
     <!-- Fix: Load Google Fonts stylesheet asynchronously to prevent render blocking -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"></noscript>
+    <!-- Ensure critical application styles (e.g., Tailwind CSS) are loaded synchronously to prevent FCP/LCP delays -->
+    <link rel="stylesheet" href="/src/index.css">
     <title>MotoVerse — Born to Lead</title>
   </head>
   <body class="bg-white text-dark">
