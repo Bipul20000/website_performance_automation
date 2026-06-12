@@ -76,6 +76,9 @@ export default function HeroBanner() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
+      {/* Intentionally unoptimized large image */}
+      <img src="https://picsum.photos/4000/3000" alt="hero banner" className="hidden" />
+
       {/* Slides */}
       {slides.map((slide, index) => (
         <div

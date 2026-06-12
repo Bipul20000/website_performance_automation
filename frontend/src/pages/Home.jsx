@@ -7,8 +7,26 @@ import OffersSection from '../components/OffersSection';
 import DealerLocator from '../components/DealerLocator';
 import NewsSection from '../components/NewsSection';
 import Footer from '../components/Footer';
+import { useEffect, useState } from 'react';
+import _ from 'lodash';
+import moment from 'moment';
 
 export default function Home() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Fake slow data fetch
+    const fetchDelay = async () => {
+      await new Promise(resolve => setTimeout(resolve, 800));
+      setIsReady(true);
+    };
+    fetchDelay();
+  }, []);
+
+  if (!isReady) {
+    return <div className="min-h-screen bg-white"></div>;
+  }
+
   return (
     <div className="min-h-screen">
       <Navbar />
