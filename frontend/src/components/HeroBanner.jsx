@@ -41,45 +41,37 @@ export default function HeroBanner() {
 
   useEffect(() => {
     const staticHero = document.getElementById('static-hero-placeholder');
-    // Delay hiding the static placeholder to ensure it's measured as LCP
-    // and to allow the React component to fully render its first slide.
     const hideTimeout = setTimeout(() => {
       if (staticHero) {
-        // Change to opacity and pointer-events to prevent layout shift
         staticHero.style.opacity = '0';
         staticHero.style.pointerEvents = 'none';
       }
-    }, 500); // Delay for 500ms
+    }, 500);
 
     startAutoAdvance();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
-      clearTimeout(hideTimeout); // Clear timeout on unmount
+      clearTimeout(hideTimeout);
     };
   }, [startAutoAdvance]);
 
-  const goTo = useCallback(
-    (index) => {
-      setCurrent(index);
-      startAutoAdvance();
-    },
-    [startAutoAdvance]
-  );
+  const goTo = useCallback((index) => {
+    setCurrent(index);
+    startAutoAdvance();
+  }, [startAutoAdvance]);
 
   const goPrev = useCallback(() => {
     goTo((current - 1 + slides.length) % slides.length);
-  }, [current, goTo]);
+  }, [current, goTo, slides.length]);
 
   const goNext = useCallback(() => {
     goTo((current + 1) % slides.length);
-  }, [current, goTo]);
+  }, [current, goTo, slides.length]);
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Intentionally unoptimized large image */}
       <img src="https://picsum.photos/4000/3000" alt="hero banner" className="hidden" />
 
-      {/* Slides */}
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -91,10 +83,8 @@ export default function HeroBanner() {
               : 'opacity-0 translate-x-full z-0'
           }`}
         >
-          {/* Bottom overlay gradient for readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-          {/* Slide Content */}
           <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <h1
               className={`text-5xl md:text-7xl font-black uppercase tracking-tight ${slide.accentColor}`}
@@ -114,7 +104,6 @@ export default function HeroBanner() {
         </div>
       ))}
 
-      {/* Left Arrow */}
       <button
         onClick={goPrev}
         className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white transition-colors duration-200"
@@ -125,7 +114,6 @@ export default function HeroBanner() {
         </svg>
       </button>
 
-      {/* Right Arrow */}
       <button
         onClick={goNext}
         className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white transition-colors duration-200"
@@ -136,7 +124,6 @@ export default function HeroBanner() {
         </svg>
       </button>
 
-      {/* Dot Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 items-center">
         {slides.map((_, index) => (
           <button
@@ -150,7 +137,6 @@ export default function HeroBanner() {
         ))}
       </div>
 
-      {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 z-20 h-1 bg-white/10">
         <div
           key={current}
@@ -158,7 +144,6 @@ export default function HeroBanner() {
         />
       </div>
 
-      {/* CSS for progress bar animation */}
       <style>{`
         @keyframes progress-fill {
           from { width: 0%; }
